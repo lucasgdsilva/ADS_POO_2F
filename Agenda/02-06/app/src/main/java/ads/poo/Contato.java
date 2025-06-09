@@ -13,6 +13,7 @@ public class Contato {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.dataNascimento = dataNascimento;
+
     }
     public String getNome() {
         return nome;
@@ -27,7 +28,7 @@ public class Contato {
     }
 
     public boolean addTelefone(String telefone, String rotulo) {
-        return telefones.add(telefone, rotulo);
+        return telefones.add(rotulo, telefone);
     }
 
     public boolean removeTelefone(String rotulo) {
@@ -44,13 +45,13 @@ public class Contato {
         return emails.update(email,rotulo);
     }
 
-    @Override
     public String toString() {
-        return "Contato : " + nome + " " + sobrenome + "\n" +
-                "Data de Nascimento: " + dataNascimento + "\n" +
-                "Email: " + emails + "\n" +
-                "Telefone: " + telefones;
-
+        return "========================================\n" +
+                "Contato: " + nome + " " + sobrenome + "\n" +
+                "Data de Nascimento: " + dataNascimento + "\n\n" +
+                "Emails:\n" + emails + "\n" +
+                "Telefones:\n" + telefones + "\n" +
+                "========================================\n";
     }
 
 }

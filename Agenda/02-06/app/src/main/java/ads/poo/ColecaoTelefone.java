@@ -5,33 +5,37 @@ import java.text.ParseException;
 import java.util.HashMap;
 
 public class ColecaoTelefone {
-    private HashMap<String,String> dados = new HashMap<>();
-    private String telefone;
-    private String rotulo;
+    private HashMap<String, String> dados = new HashMap<>();
 
-
-
-
-
-    public boolean add(String rotulo, String telefone){
+    public boolean add(String rotulo, String telefone) {
         String eR = "^[0-9]+$";
 
-        if(telefone.matches(eR) && dados.get(rotulo) == null) {
+        if (telefone.matches(eR) && dados.get(rotulo) == null) {
             dados.put(rotulo, telefone);
             return true;
         }
         return false;
+    }
 
+    public boolean remove(String rotulo) {
+        if (dados.containsKey(rotulo)) {
+            dados.remove(rotulo);
+            return true;
+        }
+        return false;
     }
-    public boolean remove(String rotulo){
-        dados.remove(rotulo);
-        return true;
+
+    public boolean update(String rotulo, String telefone) {
+        String eR = "^[0-9]+$";
+        if (telefone.matches(eR) && dados.containsKey(rotulo)) {
+            dados.put(rotulo, telefone);
+            return true;
+        }
+
+        return false;
     }
-    public boolean update(String rotulo, String telefone){
-        dados.put(rotulo,telefone);
-        return true;
-    }
-    public String formata(String mascara, String valor){
+
+    public String formata(String mascara, String valor) {
         MaskFormatter mask = null;
         String resultado = "";
         try {
@@ -45,14 +49,18 @@ public class ColecaoTelefone {
         return resultado;
     }
 
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        dados.forEach((rotulo ,telefone) -> sb.append(rotulo + ": +" + formata("##(##)#####-####", telefone )));
+        dados.forEach((rotulo, telefone) ->
+                sb.append(rotulo)
+                        .append(": +")
+                        .append(formata("##(##)#####-###", telefone))
+                        .append("\n")
+        );
+
         return sb.toString();
     }
-
-
 }
+

@@ -15,7 +15,7 @@ public class App {
         System.out.println("Digite o Sobrenome:");
         String sobrenome = sc.nextLine();
 
-        System.out.println("Data de Nascimento:");
+        System.out.println("Data de Nascimento (yyyy-mm-dd)");
         LocalDate data = LocalDate.parse(sc.nextLine());
 
         System.out.println("Adicione o Email:");
@@ -135,7 +135,8 @@ public class App {
         int c =0;
         while (c != 7) {
             System.out.println(
-                    """ __________ Agenda _____________
+                    """ 
+                                    __________ Agenda _____________
                                     1- Cadastrar Contato
                                     2- Atulizar Contato
                                     3- Remover Contato
@@ -164,7 +165,7 @@ public class App {
                     consultaContato();
                     break;
                 case 5:
-                    consultaListadeContatos();
+                    consultaListaDeContatos();
                     break;
                 case 6:
                     adicionarET();
@@ -175,6 +176,9 @@ public class App {
 
 
     public static void main(String[] args) {
+       App app = new App();
+       app.menu();
+
 
     }
 }
